@@ -19,36 +19,6 @@ GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "")
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 gemini_model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
-def get_google_substitution(ingredient_name):
-    """
-    Uses Google Custom Search API with a safety fallback if the API is disabled.
-    """
-    if not GOOGLE_SEARCH_API_KEY or not GOOGLE_CSE_ID:
-        return "Manual verification required (API keys missing)."
-
-    search_query = f"gluten free substitute for {ingredient_name}"
-    url = "https://www.googleapis.com/customsearch/v1"
-    params = {
-        "key": GOOGLE_SEARCH_API_KEY,
-        "cx": GOOGLE_CSE_ID,
-        "q": search_query,
-        "num": 1
-    }
-    
-    try:
-        response = requests.get(url, params=params)
-        results = response.json()
-        
-        # Check if the API returned an error (like the 403 you saw)
-        if "error" in results:
-            return f"Search API Error: {results['error']['message']}. Please check label."
-            
-        if "items" in results:
-            return results["items"][0]["snippet"]
-            
-        return "No substitution found via Google."
-    except Exception as e:
-        return f"Connection Error: {e}. Please verify status manually."
 
 def check_usda_gluten(ingredient_name):
     """
@@ -123,28 +93,6 @@ def check_gluten_via_google(ingredient_name):
         return ["No specific search results found."]
     except Exception as e:
         return [f"Search failed: {str(e)}"]
-
-def get_google_substitution(ingredient_name):
-    """Uses Google Custom Search API to find gluten-free alternatives."""
-    search_query = f"gluten free substitute for {ingredient_name}"
-    url = "https://www.googleapis.com/customsearch/v1"
-    
-    # Correctly reference the new variable name from your secrets
-    params = {
-        "key": st.secrets["GOOGLE_SEARCH_API_KEY"], 
-        "cx": GOOGLE_CSE_ID,
-        "q": search_query,
-        "num": 1
-    }
-    
-    try:
-        response = requests.get(url, params=params)
-        results = response.json()
-        if "items" in results:
-            return results["items"][0]["snippet"]
-        return "No substitution found via Google."
-    except Exception as e:
-        return f"Google API Error: {e}"
     
    
 @st.cache_data
