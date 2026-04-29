@@ -1,5 +1,5 @@
 streamlit
 pandas
-gdown
 google-api-python-client
 requests
+google-generativeai
