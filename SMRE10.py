@@ -192,11 +192,12 @@ def parse_maybe_list(value):
         pass
     return [x.strip() for x in str(value).split(",") if x.strip()]
 
-def lookup_matches(ingredient_text: str):
+def lookup_matches(ingredient_text: str, lookup_df):
     norm = clean_ingredient(ingredient_text)
     matches = []
-    # Using the lookup_df loaded by load_data()
+    
     for _, row in lookup_df.iterrows():
+        # Keep the str() here—it ensures numerical alias names don't crash the script
         if str(row["alias_norm"]) in norm:
             matches.append(row.to_dict())
     return matches
