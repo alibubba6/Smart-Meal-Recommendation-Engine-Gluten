@@ -12,7 +12,7 @@ from googleapiclient.discovery import build
 
 # --- CONFIGURATION & FILE DOWNLOADING ---
 FILE_IDS = {
-    "recipes": "1iZGNKfQoDC2ySwZScY5ICs7Tq2GGxrYV",
+    "recipes": "1TKskq-8PN-n1Xq7Q1rjmcPouBlpl788g",
     "lookup": "1Vkdzo4VeHQCNzMPo9bhPey2FgdkYocsF",
 }
 
