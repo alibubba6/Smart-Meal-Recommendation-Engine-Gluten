@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import gdown
 import os
 import re
 import ast
@@ -17,7 +16,6 @@ gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-# Note: Google Search API also needs a Search Engine ID (CX)
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
 def check_gluten_via_google(ingredient_name):
