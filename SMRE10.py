@@ -9,25 +9,6 @@ import streamlit as st
 import requests
 from googleapiclient.discovery import build
 
-@st.cache_data
-def load_data():
-    """Loads datasets directly from the repository."""
-    # Use the filenames as they appear in your GitHub repo
-    recipes_path = "recipes.csv"
-    lookup_path = "gluten_lookup_table_scored.csv"
-    
-    # Check if files exist to avoid errors during local testing
-    if os.path.exists(recipes_path) and os.path.exists(lookup_path):
-        recipes_df = pd.read_csv(recipes_path)
-        lookup_df = pd.read_csv(lookup_path)
-        return recipes_df, lookup_df
-    else:
-        st.error("Data files not found. Please ensure recipes.csv and gluten_lookup_table_scored.csv are in the repository.")
-        return pd.DataFrame(), pd.DataFrame()
-
-# --- INITIALIZE APP ---
-recipes_df, lookup_df = load_data()
-
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
@@ -128,19 +109,26 @@ def evaluate_ingredient(ingredient_text):
         "substitution": sub,
         "usda_note": usda_msg
     }
-
-
-# --- LOAD DATA ---
-
+   
 @st.cache_data
 def load_data():
-    download_datasets()
-    recipes_df = pd.read_csv("recipes.csv")
-    lookup_df = pd.read_csv("lookup.csv")
+    """Loads datasets directly from the repository and prepares lookup structures."""
+    recipes_path = "recipes.csv"
+    lookup_path = "gluten_lookup_table_scored.csv"
     
+    # 1. Check if files exist
+    if not os.path.exists(recipes_path) or not os.path.exists(lookup_path):
+        st.error("Data files not found. Please ensure recipes.csv and gluten_lookup_table_scored.csv are in the repository.")
+        return pd.DataFrame(), pd.DataFrame()
     
-    # Prep lookup structures
+    # 2. Load the data
+    recipes_df = pd.read_csv(recipes_path)
+    lookup_df = pd.read_csv(lookup_path)
+
+    # 3. Prep lookup structures (This must happen BEFORE the return)
     lookup_df["alias_norm"] = lookup_df["alias"].astype(str).str.lower().str.strip()
+    
+    # Sort by length descending to match longer phrases first (e.g., "whole wheat flour" before "wheat")
     lookup_df = lookup_df.sort_values(
         by="alias_norm", 
         key=lambda s: s.str.len(), 
@@ -149,6 +137,9 @@ def load_data():
     
     return recipes_df, lookup_df
 
+# --- INITIALIZE APP ---
+# This part stays OUTSIDE the function so it runs when the app starts
+recipes_df, lookup_df = load_data()
 SUBSTITUTIONS = {
     "soy sauce": "Use certified gluten-free tamari.",
     "teriyaki sauce": "Use a certified gluten-free teriyaki sauce or coconut aminos.",
