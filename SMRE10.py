@@ -153,7 +153,8 @@ SUBSTITUTIONS = {
     "bread crumbs": "gluten-free bread crumbs",
     "pasta": "gluten-free pasta (corn or rice based)",
     "barley": "quinoa or rice",
-    "rye": "buckwheat"
+    "rye": "buckwheat",
+    "bread": "gluten-free bread"
 }
 
 def normalize_text(text: str) -> str:
