@@ -243,7 +243,7 @@ def evaluate_ingredient(ingredient_text, lookup_df):
                     why_flagged = "Flagged by AI Web Analysis"
                     
             except Exception as e:
-                sub = f"Search/AI Error: {str(e)}. Please verify manually."
+                sub = f"Safety could not be verified by AI. Please choose a certified gluten-free alternative."
         
     return {
         "ingredient": ingredient_text, 
