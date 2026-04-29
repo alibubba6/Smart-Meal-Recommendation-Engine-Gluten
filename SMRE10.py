@@ -201,26 +201,40 @@ def lookup_matches(ingredient_text: str):
             matches.append(row.to_dict())
     return matches
 
-def evaluate_ingredient(ingredient_text):
-    matches = lookup_matches(ingredient_text)
+def evaluate_ingredient(ingredient_text, lookup_df):
+    matches = lookup_matches(ingredient_text, lookup_df)
     
-    # Logic to determine risk and substitution
+    # Default state: Risk 0 (No Gluten)
+    risk_score = 0
+    rec_action = "allow"
+    why_flagged = "No gluten-containing ingredients detected."
+    sub = "None needed."
+
     if matches:
-        max_risk = max(int(m.get("risk_score", 0)) for m in matches)
-        # Find a substitution if it's high risk
-        sub = "No specific substitution found."
-        for key in SUBSTITUTIONS:
-            if key in ingredient_text.lower():
-                sub = SUBSTITUTIONS[key]
-                break
-        
-        return {
-            "ingredient": ingredient_text, 
-            "risk_score": max_risk,
-            "substitution": sub
-        }
-    
-    return {"ingredient": ingredient_text, "risk_score": 0, "substitution": "None needed."}
+        # 1. Get the highest risk score from the matches in your CSV
+        best_match = max(matches, key=lambda x: x.get("risk_score", 0))
+        risk_score = int(best_match.get("risk_score", 0))
+        rec_action = best_match.get("rec_action", "allow")
+        why_flagged = best_match.get("why_flagged", "Known safe ingredient.")
+
+        # 2. Trigger substitution logic for scores 1, 2, or 3
+        # Use hardcoded SUBSTITUTIONS first, then fallback to Google for Risk 2+
+        if risk_score >= 1:
+            sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
+            
+            # If no manual sub exists and it's Risk 2 (Risk) or 3 (High Risk), use Google
+            if not sub and risk_score >= 2:
+                sub = get_google_substitution(ingredient_text)
+            elif not sub:
+                sub = "Verify manufacturer label for hidden gluten."
+
+    return {
+        "ingredient": ingredient_text, 
+        "risk_score": risk_score,
+        "rec_action": rec_action,
+        "why_flagged": why_flagged,
+        "substitution": sub
+    }
 
 # --- STREAMLIT UI ---
 st.set_page_config(page_title="SMRE Gluten Audit", layout="wide")
@@ -247,15 +261,22 @@ if st.sidebar.button("Random Recipe"):
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("📋 Ingredients")
+        st.subheader("📋 Ingredients Audit")
         for r in results:
-            with st.expander(f"{r['ingredient']} (Risk: {r['risk_score']})"):
-                if r['risk_score'] >= 2:
-                    st.error(f"High Risk: {r['substitution']}")
-                elif r['risk_score'] == 1:
-                    st.warning("Possible Risk: Verify ingredients.")
+            score = r['risk_score']
+        # Display the specific score in the header
+            with st.expander(f"{r['ingredient']} (Risk Score: {score})"):
+                st.write(f"**Action:** {r['rec_action'].title()}")
+                st.write(f"**Details:** {r['why_flagged']}")
+            
+                if score == 3:
+                    st.error(f"🚨 **High Risk:** {r['substitution']}")
+                elif score == 2:
+                    st.error(f"⚠️ **Risk:** {r['substitution']}")
+                elif score == 1:
+                    st.warning(f"🔍 **Possible Risk:** {r['substitution']}")
                 else:
-                    st.success("Likely Safe")
+                    st.success("✅ **No Gluten:** Likely Safe")
                     
     with col2:
         st.subheader("📖 Directions")
