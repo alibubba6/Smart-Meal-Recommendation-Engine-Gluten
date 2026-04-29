@@ -204,29 +204,31 @@ def lookup_matches(ingredient_text: str):
 def evaluate_ingredient(ingredient_text, lookup_df):
     matches = lookup_matches(ingredient_text, lookup_df)
     
-    # Default state: Risk 0 (No Gluten)
+    # Default: Score 0 (Safe)
     risk_score = 0
     rec_action = "allow"
-    why_flagged = "No gluten-containing ingredients detected."
+    why_flagged = "No gluten detected."
     sub = "None needed."
 
     if matches:
-        # 1. Get the highest risk score from the matches in your CSV
+        # Get highest risk match from CSV
         best_match = max(matches, key=lambda x: x.get("risk_score", 0))
         risk_score = int(best_match.get("risk_score", 0))
         rec_action = best_match.get("rec_action", "allow")
-        why_flagged = best_match.get("why_flagged", "Known safe ingredient.")
+        why_flagged = best_match.get("why_flagged", "Known safe.")
 
-        # 2. Trigger substitution logic for scores 1, 2, or 3
-        # Use hardcoded SUBSTITUTIONS first, then fallback to Google for Risk 2+
+        # SUBSTITUTION LOGIC based on 0-3 scale
         if risk_score >= 1:
+            # 1. Try local dictionary first
             sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
             
-            # If no manual sub exists and it's Risk 2 (Risk) or 3 (High Risk), use Google
+            # 2. If Risk 2 or 3 and no local sub, use Google API
             if not sub and risk_score >= 2:
                 sub = get_google_substitution(ingredient_text)
-            elif not sub:
-                sub = "Verify manufacturer label for hidden gluten."
+            
+            # 3. Fallback text if still no sub found
+            if not sub:
+                sub = "Check label for gluten-free certification."
 
     return {
         "ingredient": ingredient_text, 
