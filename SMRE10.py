@@ -232,7 +232,7 @@ def evaluate_ingredient(ingredient_text, lookup_df):
                 2. If risky, provide a 1-sentence cooking substitute.
                 """
                 response = client.models.generate_content(
-                    model="gemini-1.5-flash", 
+                    model= "gemini-2.0-flash", 
                     contents=prompt
                 )
                 sub = response.text
