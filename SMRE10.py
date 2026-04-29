@@ -215,16 +215,23 @@ def evaluate_ingredient(ingredient_text):
 st.set_page_config(page_title="SMRE Gluten Audit", layout="wide")
 st.title("🛡️ Smart Meal Recommendation Engine (SMRE) Gluten Pipeline")
 
+# --- One-sentence description below the title ---
+st.markdown("An automated auditing system designed to identify gluten-containing ingredients and suggest safe, high-quality alternatives for celiac-safe meal planning.")
+
 recipes_df, lookup_df = load_data()
 
 st.sidebar.header("Controls")
 if st.sidebar.button("Random Recipe"):
+    # --- Professional Disclaimer below the button ---
+    st.sidebar.caption("⚠️ **Disclaimer:** This engine utilizes AI and automated data retrieval. While designed for accuracy, results should be verified for clinical safety; always consult product labels for strict dietary requirements.")
+    
     recipe = recipes_df.sample(1).iloc[0]
     
     st.header(f"Recipe: {recipe.get('title', 'Untitled')}")
     
+    # ... rest of your existing display logic ...
     ingredients = parse_maybe_list(recipe.get("ingredients", []))
-    results = [evaluate_ingredient(ing) for ing in ingredients] # Your decision engine
+    results = [evaluate_ingredient(ing) for ing in ingredients]
     
     col1, col2 = st.columns(2)
     
