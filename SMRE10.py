@@ -23,9 +23,9 @@ def load_gemini():
     available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
     
     if 'models/gemini-1.5-flash' in available_models:
-        return genai.GenerativeModel('gemini-2.0-flash')
+        return genai.GenerativeModel('model/gemini-2.0-flash')
     elif 'models/gemini-pro' in available_models:
-        return genai.GenerativeModel('gemini-pro')
+        return genai.GenerativeModel('gemini-1.5-flash')
     else:
         # If all else fails, pick the first one that supports content generation
         return genai.GenerativeModel(available_models[0].replace('models/', ''))
