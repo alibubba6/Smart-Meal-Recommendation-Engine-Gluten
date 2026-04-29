@@ -48,7 +48,22 @@ def check_usda_gluten(ingredient_name):
             ingredients_list = food_item.get("ingredients", "").lower()
             
             # Search for gluten red flags
-            red_flags = ["wheat", "barley", "rye", "malt", "brewer's yeast"]
+            red_flags = [
+    # Core Grains
+    "wheat", "barley", "rye", "triticale", "spelt", "kamut", "farro", "durum", "bulgur",
+    
+    # Derivatives & Processing Terms
+    "malt", "malted", "maltodextrin", "brewer's yeast", "autolyzed yeast", "yeast extract", 
+    "hydrolyzed wheat protein", "vital wheat gluten", "seitan", "wheat starch", 
+    
+    # Flour & Meal Types
+    "semolina", "couscous", "graham flour", "einkorn", "emmer", "farina", "atta", 
+    "matzo", "matzah", "panko",
+    
+    # Specific High-Risk Additives
+    "modified food starch", "modified wheat starch", "cereal protein", "binder", 
+    "filler", "malt vinegar", "soy sauce", "teriyaki", "roux"
+]
             for flag in red_flags:
                 if flag in description or flag in ingredients_list:
                     return True, f"Detected {flag} in USDA data."
