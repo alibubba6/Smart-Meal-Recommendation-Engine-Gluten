@@ -146,36 +146,6 @@ def get_google_substitution(ingredient_name):
     except Exception as e:
         return f"Google API Error: {e}"
     
-
-# --- UPDATED EVALUATION LOGIC ---
-def evaluate_ingredient(ingredient_text):
-    # 1. Keep your existing local lookup logic as a first pass
-    matches = lookup_matches(ingredient_text)
-    
-    # 2. Call USDA API for a deeper check
-    usda_found, usda_msg = check_usda_gluten(ingredient_text)
-    
-    # Determine risk
-    risk_score = 0
-    if matches:
-        risk_score = max(int(m.get("risk_score", 0)) for m in matches)
-    if usda_found:
-        risk_score = max(risk_score, 2) # Elevate risk if USDA confirms wheat/barley/rye
-        
-    # 3. If high risk, use Google to find a modern substitution
-    sub = "None needed."
-    if risk_score >= 1:
-        # Check hardcoded SUBSTITUTIONS first, then fallback to Google
-        sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
-        if not sub:
-            sub = get_google_substitution(ingredient_text)
-            
-    return {
-        "ingredient": ingredient_text, 
-        "risk_score": risk_score,
-        "substitution": sub,
-        "usda_note": usda_msg
-    }
    
 @st.cache_data
 def load_data():
