@@ -2,4 +2,4 @@ streamlit
 pandas
 google-api-python-client
 requests
-google-genai
+google.generativeai
