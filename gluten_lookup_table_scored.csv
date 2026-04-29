@@ -1,0 +1,373 @@
+alias,canonical_term,category,risk_level,risk_score,rec_action,why_flagged,source_tier
+33-mer gliadin peptide,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,well-known immunogenic gliadin peptide,NIH
+ale,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+ale extract,beer/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,ale-derived ingredient term,GIG
+all-purpose flour,wheat,wheat_ingredient,LIKELY_CONTAINS_GLUTEN,2,reject,often wheat flour in recipes,CDF/GIG
+alpha gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+alpha-gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+artificial flavor,artificial flavor,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+artificial flavors,artificial flavors,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+artisan tortilla chips,mixed grains,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,may include wheat grains,CDF
+atta,atta,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+atta flour,atta flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+autolysed yeast extract,autolysed yeast extract,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+autolyzed yeast extract,autolyzed yeast extract,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+avena sativa,oats,latin_scientific_name,CONTEXT_DEPENDENT,1,verify,oats are context dependent for celiac due certification/cross-contact issues,GIG/FDA/CDF
+bagel,bagel,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+banger sausage,banger sausage,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+barbecue sauce,barbecue sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+barley,barley,gluten_grain,CONTAINS_GLUTEN,3,reject,core gluten-containing grain,FDA/CDF/NIH
+barley enzymes,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley-derived processing aid,CDF
+barley extract,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley-derived extract,GIG
+barley flakes,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley form,CDF
+barley flour,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,explicit barley ingredient,CDF
+barley grits,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley form,CDF
+barley malt,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley-derived malt,CDF/GIG
+barley malt extract,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+barley malt flavoring,barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,explicit malt flavoring,CDF
+barley malt flour,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+barley malt powder,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+barley malt syrup,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+barley meal,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley form,CDF
+barley sugar,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,traditional barley confection term,GIG
+barley tea,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+barley water,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+bbq sauce,bbq sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+beef jerky teriyaki,beef jerky teriyaki,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+beer,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+beer batter,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+beer battered,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+beer cheese,beer/barley,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,beer ingredient can introduce gluten,GIG
+beer flavoring,beer/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,beer-derived flavoring term,GIG
+binder,binder,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+biscuit mix,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat flour mixture,CDF
+black licorice,black licorice,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+black vinegar,black vinegar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+bouillon,bouillon,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+bouillon cubes,bouillon cubes,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+bread crumbs,bread crumbs,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+bread flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,wheat flour type,CDF
+breadcrumbs,breadcrumbs,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+breading,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,typically wheat-based coating,CDF
+brewer's yeast,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+brewers yeast,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+brewing yeast from barley,barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley-associated brewing ingredient,GIG
+broth base,broth base,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+brown rice syrup,brown rice syrup,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+brownie,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based baked good,CDF
+bulgur,bulgur,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+bulgur wheat,bulgur wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+cake,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based baked good,CDF
+cake flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,wheat flour type,CDF
+chapati flour,chapati flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+cheesecake filling,cheesecake filling,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+chinese black vinegar,chinese black vinegar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+chow mein noodles,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,wheat noodle term,CDF
+club wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat species,NIH
+coating mix,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,typically wheat-based coating,CDF
+cocktail mixer,cocktail mixer,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+communion wafer,communion wafer,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+cookies,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based baked good,CDF
+cooking spray,cooking spray,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+corn flakes,corn flakes,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+cornbread,wheat,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,often contains wheat flour despite corn name,CDF
+couscous,couscous,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+cracker meal,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based cracker crumbs,CDF
+cream of wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,explicit wheat cereal,CDF
+cream sauce,cream sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+cream soup,cream soup,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+crepe mix,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat flour mixture,CDF
+crispy rice cereal,crispy rice cereal,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+croissant,croissant,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+croutons,croutons,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+dark rye flour,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye flour form,CDF
+deamidated gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin-derived term,NIH
+deli meat,deli meat,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+dessert bar,dessert bar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+dextrin,dextrin,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+distilled vinegar,distilled vinegar,high_risk_food_phrase,CONTEXT_DEPENDENT,1,allow_if_verified,distilled vinegar generally safe after distillation but verify additives,CDF
+donut,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based baked good,CDF
+dressing mix,dressing mix,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+dumpling wrappers,dumpling wrappers,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+durum,durum,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+durum semolina,semolina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,explicit wheat semolina,CDF
+durum wheat,durum wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+egg noodles,egg noodles,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+einkorn,einkorn,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+einkorn flour,einkorn flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+einkorn wheat,einkorn wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+emmer,emmer,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+emmer wheat,emmer wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+energy bar,energy bar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+english mustard,english mustard,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+enriched wheat flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat ingredient,CDF
+farina,farina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+farina cereal,farina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,farina is wheat based,CDF
+farro,farro,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+farro grande,spelt/farro,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,farro-related wheat term,CDF
+farro medio,emmer/farro,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,farro-related wheat term,CDF
+farro perlato,farro,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,farro variant,CDF
+farro piccolo,einkorn/farro,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,farro-related wheat term,CDF
+filler,filler,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+filo dough,filo dough,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+flatbread,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based,CDF
+flavored chips,flavored chips,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+flour tortilla,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,wheat flour tortilla,CDF
+food starch,food starch,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+freekeh,freekeh,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+french fries battered,french fries battered,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+fudge bar,fudge bar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+gamma gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+gamma-gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,wheat prolamin fraction of gluten,NIH
+gluten,gluten,gluten_protein_family,CONTAINS_GLUTEN,3,reject,explicit gluten term,FDA/CDF/NIH
+gluten flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit gluten flour term,GIG
+gluten peptide,gluten,gluten_protein,CONTAINS_GLUTEN,3,reject,explicit gluten peptide term,NIH
+glutenin,glutenin,gluten_protein,CONTAINS_GLUTEN,3,reject,wheat glutenin fraction,NIH
+gnocchi,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,often contains wheat flour,CDF
+goldfish crackers,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat-based cracker,CDF
+graham,graham,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+graham cracker,graham,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,graham flour/wheat-based cracker,CDF
+graham flour,graham flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+granola,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+granola bar,granola bar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+gravy,gravy,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+gravy mix,gravy mix,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+hard lemonade,hard lemonade,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+hard lemonade malt base,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+hard red wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat class,NIH
+hoisin sauce,hoisin sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+hordein,hordein,gluten_protein,CONTAINS_GLUTEN,3,reject,barley prolamin,NIH
+hordeum vulgare,barley,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for barley,GIG
+hulled barley,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley form,CDF
+hydrolysed barley protein,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,explicit barley-derived protein,GIG
+hydrolysed plant protein,hydrolysed plant protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+hydrolysed rye protein,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,explicit rye-derived protein,GIG
+hydrolysed vegetable protein,hydrolysed vegetable protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+hydrolysed wheat protein,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat-derived protein,GIG
+hydrolyzed barley protein,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,explicit barley-derived protein,GIG
+hydrolyzed plant protein,hydrolyzed plant protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+hydrolyzed rye protein,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,explicit rye-derived protein,GIG
+hydrolyzed vegetable protein,hydrolyzed vegetable protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+hydrolyzed wheat gluten,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat-derived gluten,GIG
+hydrolyzed wheat protein,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat-derived protein,GIG
+ice cream bar,ice cream bar,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+imitation bacon,imitation bacon,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+imitation crab,imitation crab,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+imitation seafood,imitation seafood,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+immunogenic gluten peptide,gluten,gluten_protein,CONTAINS_GLUTEN,3,reject,explicit gluten peptide term,NIH
+instant noodles,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,commonly wheat-based unless labelled GF,CDF
+instant oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+israeli couscous,israeli couscous,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+kamut,kamut,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+kamut flour,kamut flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+kamut®,kamut,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,brand/trademarked khorasan wheat term,CDF
+khorasan,khorasan,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+khorasan flour,khorasan,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat flour variant,CDF
+khorasan wheat,khorasan wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+lager,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+lager extract,beer/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,lager-derived ingredient term,GIG
+licorice,licorice,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+light rye flour,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye flour form,CDF
+lunch meat,lunch meat,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+maida,maida,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+maida flour,maida flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+malt,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt base,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt beverage,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt beverages,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt extract,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt flavor,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt flavoring,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt flavour,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt flavouring,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt loaf,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt powder,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt solids,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt syrup,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt vinegar,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malt vinegar powder,malt vinegar,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,malt vinegar derivative,GIG
+malted barley,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted barley extract,barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,explicit barley extract,CDF
+malted barley flour,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted barley syrup,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted cereal,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted drink,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted drink mix,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted milk,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted milk powder,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted milkshake,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+malted wheat,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+maltodextrin,maltodextrin,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+marinade,marinade,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+marinades,marinades,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+marmite,marmite,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+matza,matza,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+matza meal,matza meal,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+matzah,matzah,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+matzah meal,matzah meal,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+matzo,matzo,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+matzo meal,matzo meal,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+meat substitute,meat substitute,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+milkshake mix,milkshake mix,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+miso,mixed fermentation,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,some types may include barley/wheat,GIG
+modified food starch,modified food starch,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+modified starch,modified starch,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+modified wheat starch,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat-derived starch unless proven otherwise,GIG/CDF
+muffin,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based baked good,CDF
+multigrain tortilla,mixed grains,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,may include wheat/barley,CDF
+mustard powder blend,mustard powder blend,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+naan,naan,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+natural flavor,natural flavor,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+natural flavors,natural flavors,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+natural flavour,natural flavour,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+natural flavours,natural flavours,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+non-certified oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oat bran,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oat fiber,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oat flakes,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oat flour,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oatmeal,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+omega gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+omega-gliadin,gliadin,gluten_protein,CONTAINS_GLUTEN,3,reject,gliadin protein subclass,NIH
+orzo,orzo,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+orzo pasta,orzo pasta,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+overnight oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+pancake batter,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat flour mixture,CDF/GIG
+panko,panko,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+panko breadcrumbs,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,panko is bread crumb coating,CDF
+pasta,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat-based food unless explicitly GF,CDF
+pastry flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,wheat flour type,CDF
+pearl barley,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley form,CDF
+pearl couscous,pearl couscous,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+phyllo,phyllo,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+pie crust,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based pastry,CDF
+pita,pita,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+pizza crust,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,typically wheat-based,CDF
+plant protein,plant protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+ponzu sauce,ponzu sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+porter,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+potato bread,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based bread,CDF
+powdered soup,powdered soup,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+pre-seasoned meat,pre-seasoned meat,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+preserved meats,preserved meats,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+pretzel,pretzel,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+processed chips,processed chips,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+prolamin,prolamin,gluten_protein_family,CONTEXT_DEPENDENT,1,manual_review,protein family term requires source grain context,NIH
+protein concentrate,protein concentrate,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+protein isolate,protein isolate,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+pumpernickel,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye bread/flour term,GIG/CDF
+quick oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+ramen noodles,ramen noodles,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+ramen seasoning,ramen seasoning,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+rava,rava,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+ravioli,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat pasta,CDF
+red licorice,red licorice,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+red wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat class,NIH
+regular oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+regular soy sauce,regular soy sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+rice pilaf,rice pilaf,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+rice puffs,rice puffs,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+roasted barley extract,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley derivative,GIG
+roasted barley tea,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+rolled oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+rolls,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,usually wheat-based bread,CDF
+roux,roux,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+rusk,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,twice-baked bread filler in sausages,GIG
+rye,rye,gluten_grain,CONTAINS_GLUTEN,3,reject,core gluten-containing grain,FDA/CDF/NIH
+rye berries,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye form,CDF
+rye flakes,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye form,CDF
+rye flour,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,explicit rye ingredient,CDF
+rye meal,rye,rye_derivative,CONTAINS_GLUTEN,3,reject,rye form,CDF
+salad dressing,salad dressing,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+salad dressings,salad dressings,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+sausage,sausage,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+scotch barley,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,barley term,GIG
+seasoned fries,seasoned fries,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+seasoned rice,seasoned rice,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+seasoning,seasoning,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+seasoning packet,seasoning packet,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+seasonings,seasonings,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+secale cereale,rye,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for rye,GIG
+secalin,secalin,gluten_protein,CONTAINS_GLUTEN,3,reject,rye prolamin,NIH
+seitan,seitan,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+self raising flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,usually wheat flour blend,CDF/GIG
+self-basting poultry,self-basting poultry,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+self-rising flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,usually wheat flour blend,CDF/GIG
+semolina,semolina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+semolina flour,semolina flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+semolina pasta,semolina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,semolina pasta is wheat-based,CDF
+smoke flavoring,smoke flavoring,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+smoke flavouring,smoke flavouring,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+soba,buckwheat/wheat mix,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,many soba products include wheat,CDF
+soft wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat class,NIH
+soup,soup,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+soup base,soup base,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+soy sauce,soy sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+soy sauce solids,soy sauce,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,powdered soy sauce often implies wheat-based soy sauce,GIG/CDF
+specialty chocolate,specialty chocolate,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+specialty ketchup,specialty ketchup,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+specialty mustard,specialty mustard,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+spelt,spelt,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+spelt flour,spelt flour,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+starch,starch,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+steel cut oats,oats,oats_context,CONTEXT_DEPENDENT,1,verify,oats are not gluten grains but need gluten-free verification due cross-contact; some patients react to avenin,FDA/CDF
+stout,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+stuffing,stuffing,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+suji,suji,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+taco seasoning,taco seasoning,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+tamari,tamari,high_risk_food_phrase,CONTEXT_DEPENDENT,1,verify,tamari may be safe but source/label matters,CDF
+tamari with wheat,tamari with wheat,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+tempura batter,wheat,high_risk_food_phrase,LIKELY_CONTAINS_GLUTEN,2,reject,typically wheat-based batter,GIG
+teriyaki sauce,teriyaki sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+textured vegetable protein,textured vegetable protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+traditional soy sauce,traditional soy sauce,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+triticale,triticale,gluten_grain,CONTAINS_GLUTEN,3,reject,wheat-rye crossbred gluten grain,FDA/CDF
+triticum,wheat,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,Latin root for wheat,GIG
+triticum aestivum,wheat,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for bread wheat,GIG/NIH
+triticum compactum,club wheat,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,wheat species,NIH
+triticum dicoccum,emmer,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for emmer,NIH
+triticum durum,durum,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for durum wheat,NIH
+triticum monococcum,einkorn,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for einkorn,NIH
+triticum polonicum,polish wheat,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,wheat species,NIH
+triticum spelta,spelt,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for spelt,NIH
+triticum turanicum,khorasan/kamut,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name for khorasan wheat,NIH
+triticum turgidum,durum/emmer group,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,scientific name in wheat family,NIH
+triticum vulgare,wheat,latin_scientific_name,LIKELY_CONTAINS_GLUTEN,2,reject,Latin/common cosmetic name for wheat,GIG
+tvp,tvp,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+udon,udon,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+vegan burger,vegan burger,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vegan deli meat,vegan deli meat,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vegan hot dog,vegan hot dog,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vegan pepperoni,vegan pepperoni,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vegemite,vegemite,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vegetable protein,vegetable protein,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+vegetarian burger,vegetarian burger,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+veggie burger,veggie burger,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+vital wheat gluten,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,concentrated wheat gluten,GIG/CDF
+waffle mix,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,common wheat flour mixture,CDF
+wheat,wheat,gluten_grain,CONTAINS_GLUTEN,3,reject,core gluten-containing grain,FDA/CDF/NIH
+wheat beer,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+wheat berries,wheat,wheat_variety,CONTAINS_GLUTEN,3,reject,listed wheat derivative,CDF
+wheat bran,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,wheat fraction,FDA/CDF
+wheat dextrin,wheat dextrin,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+wheat flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat ingredient,CDF
+wheat germ,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,wheat fraction,FDA/CDF
+wheat gluten,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit gluten source,FDA/CDF
+wheat maltodextrin,wheat maltodextrin,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+wheat noodles,wheat,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,explicit wheat noodle phrase,CDF
+wheat protein concentrate,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat protein,GIG
+wheat protein isolate,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat protein,GIG
+wheat semolina,semolina,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,explicit wheat semolina,CDF
+wheat starch,wheat,wheat_ingredient,CONTEXT_DEPENDENT,1,verify,may be safe only if specially processed below 20 ppm,FDA/CDF
+wheat-based soy sauce,soy sauce,high_risk_food_phrase,CONTAINS_GLUTEN,3,reject,explicit wheat-based soy sauce,GIG
+wheatberries,wheat,wheat_variety,CONTAINS_GLUTEN,3,reject,listed wheat derivative,CDF
+white wheat,wheat,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,wheat class,NIH
+whole wheat flour,wheat,wheat_ingredient,CONTAINS_GLUTEN,3,reject,explicit wheat ingredient,CDF
+wine cooler,wine cooler,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
+wine cooler malt base,malt/barley,barley_malt_brewing,CONTAINS_GLUTEN,3,reject,barley/malt or non-distilled brewing term associated with gluten-containing grains,CDF/GIG
+wonton wrappers,wonton wrappers,wheat_variety_or_common_food,CONTAINS_GLUTEN,3,reject,common wheat variety or wheat-based food commonly listed as gluten-containing,CDF/GIG
+yeast extract,yeast extract,ambiguous_or_requires_source_check,AMBIGUOUS_VERIFY_SOURCE,1,verify,term can be gluten-containing depending on source/formulation or commonly appears in hidden-gluten contexts,GIG/CDF/FDA
+yeast extract derived from barley,barley,barley_derivative,CONTAINS_GLUTEN,3,reject,explicit barley-derived yeast extract,GIG
+yeast spread,yeast spread,high_risk_food_phrase,AMBIGUOUS_VERIFY_SOURCE,1,verify,high-risk food phrase commonly associated with hidden gluten; verify ingredient list or source,GIG/CDF
