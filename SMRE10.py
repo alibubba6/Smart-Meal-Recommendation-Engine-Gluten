@@ -9,6 +9,8 @@ from pathlib import Path
 import streamlit as st
 import requests
 from googleapiclient.discovery import build
+import subprocess
+import sys
 
 # --- CONFIGURATION & FILE DOWNLOADING ---
 FILE_IDS = {
@@ -131,7 +133,14 @@ def evaluate_ingredient(ingredient_text):
 # --- LOAD DATA ---
 @st.cache_resource
 def load_nlp():
-    return spacy.load("en_core_web_sm")
+    try:
+        # Try to load the model normally
+        return spacy.load("en_core_web_sm")
+    except OSError:
+        # If not found, download it on the fly
+        st.info("Downloading NLP model... please wait.")
+        subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+        return spacy.load("en_core_web_sm")
 
 @st.cache_data
 def load_data():
