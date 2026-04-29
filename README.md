@@ -36,7 +36,7 @@ The engine utilizes a three-stage evaluation process for ingredient safety:
 ## Setup & Installation
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/yourusername/Smart-Meal-Recommendation-Engine-Gluten.git](https://github.com/yourusername/Smart-Meal-Recommendation-Engine-Gluten.git)
+    git clone [https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git](https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git)
     ```
 2.  **Install Dependencies:**
     ```bash
