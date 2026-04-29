@@ -2,6 +2,10 @@
 
 An AI-powered hybrid meal recommendation engine designed to provide safe, personalized, and gluten-aware recipes. This system combines **deterministic rule-based auditing** with **dynamic API verification** to ensure celiac-safe meal planning.
 
+## Live Application
+Access the deployed engine here:
+**[Smart Meal Recommendation Engine (SMRE) - Gluten Pipeline](https://smart-meal-recommendation-engine-gluten.streamlit.app/)**
+
 ## Overview
 The SMRE Gluten Pipeline solves the challenge of identifying "hidden" gluten in complex recipes. By cross-referencing local datasets with the **USDA FoodData Central API** and **Google Custom Search API**, the engine provides a multi-layered risk assessment for every ingredient.
 
