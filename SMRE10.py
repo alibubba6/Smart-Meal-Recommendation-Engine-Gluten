@@ -23,7 +23,7 @@ def load_gemini():
     available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
     
     if 'models/gemini-1.5-flash' in available_models:
-        return genai.GenerativeModel('gemini-1.5-flash')
+        return genai.GenerativeModel('gemini-2.0-flash')
     elif 'models/gemini-pro' in available_models:
         return genai.GenerativeModel('gemini-pro')
     else:
@@ -295,11 +295,30 @@ if st.sidebar.button("Random Recipe"):
         st.subheader("📋 Ingredients Audit")
         for r in results:
             score = r['risk_score']
-        # Display the specific score in the header
-            with st.expander(f"{r['ingredient']} (Risk Score: {score})"):
+
+            max_risk = max([r['risk_score'] for r in results]) if results else 0
+        
+            if max_risk >= 2:
+                st.error(f"**Action Required:** High-risk ingredients detected.")
+            elif max_risk == 1:
+                st.warning(f"**Caution:** Potential gluten cross-contamination or hidden sources.")
+            else:
+                st.success(f"**Safe:** No gluten-containing ingredients identified.")
+        
+        st.divider()
+
+        # --- PART 2: UPDATE THE LOOP ---
+        risk_icons = {3: "🔴", 2: "🟠", 1: "🟡", 0: "🟢"}
+        
+        for r in results:
+            score = r['risk_score']
+            icon = risk_icons.get(score, "⚪")
+            
+            # Use the icon in the expander title for instant visibility
+            with st.expander(f"{icon} {r['ingredient']} (Risk: {score})"):
                 st.write(f"**Action:** {r['rec_action'].title()}")
                 st.write(f"**Details:** {r['why_flagged']}")
-            
+                
                 if score == 3:
                     st.error(f"🚨 **High Risk:** {r['substitution']}")
                 elif score == 2:
