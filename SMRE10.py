@@ -7,7 +7,7 @@ from pathlib import Path
 import streamlit as st
 import requests
 from googleapiclient.discovery import build
-import google.generativeai as genai
+from google import genai
 
 
 # --- API CONFIGURATION ---
@@ -16,9 +16,7 @@ USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-gemini_model = genai.GenerativeModel('gemini-1.5-flash-002')
-
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def check_usda_gluten(ingredient_name):
     """
@@ -233,7 +231,10 @@ def evaluate_ingredient(ingredient_text, lookup_df):
                 1. Provide a definitive safety verdict.
                 2. If risky, provide a 1-sentence cooking substitute.
                 """
-                response = gemini_model.generate_content(prompt)
+                response = client.models.generate_content(
+                    model="gemini-1.5-flash", 
+                    contents=prompt
+                )
                 sub = response.text
                 
                 # If Gemini finds a risk your CSV/USDA missed, update the score
