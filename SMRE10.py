@@ -271,58 +271,51 @@ def lookup_matches(ingredient_text: str, lookup_df):
     return matches
 
 def evaluate_ingredient(ingredient_text, lookup_df):
-    # 1. Start with your local CSV match (Fast & Accurate for known items)
+    # 1. Local CSV Check
     matches = lookup_matches(ingredient_text, lookup_df)
+    
+    csv_score = 0
+    why_flagged = "No gluten detected."
+    rec_action = "allow"
     
     if matches:
         best_match = max(matches, key=lambda x: x.get("risk_score", 0))
-        risk_score = int(best_match.get("risk_score", 0))
+        csv_score = int(best_match.get("risk_score", 0))
+        why_flagged = best_match.get("why_flagged", "Known source.")
         rec_action = best_match.get("rec_action", "allow")
-        why_flagged = best_match.get("why_flagged", "Known risk profile.")
-    else:
-        # 2. BACKUP: If NOT in your CSV, use Google Search + Gemini
-        st.write(f"🔍 Researching unknown ingredient: {ingredient_text}...")
-        
-        # Get raw data from Google Search
-        search_snippets = check_gluten_via_google(ingredient_text)
-        context_text = "\n".join(search_snippets)
-        
-        # Ask Gemini to analyze the search results
-        prompt = f"""
-        Analyze if '{ingredient_text}' is safe for Celiacs based on these search results:
-        {context_text}
-        
-        Return exactly in this format:
-        SCORE: [0-3]
-        REASON: [Brief explanation]
-        """
-        response = gemini_model.generate_content(prompt)
-        ai_output = response.text
-        
-        # Simple parsing of Gemini's response
-        risk_score = 1 # Default to warning if unclear
-        if "SCORE: 0" in ai_output: risk_score = 0
-        elif "SCORE: 2" in ai_output: risk_score = 2
-        elif "SCORE: 3" in ai_output: risk_score = 3
-        
-        rec_action = "verify" if risk_score == 1 else ("reject" if risk_score >= 2 else "allow")
-        why_flagged = f"AI Search Result: {ai_output.split('REASON:')[-1].strip()}"
 
-    # 3. SMART SUBSTITUTION (Part 3)
+    # 2. USDA API Check
+    # Ensure check_usda_gluten is defined to return (score, message)
+    usda_score, usda_msg = check_usda_gluten(ingredient_text)
+
+    # 3. Determine Final Risk
+    final_risk_score = max(csv_score, usda_score)
+    if usda_score > csv_score:
+        why_flagged = usda_msg
+
+    # 4. Substitution & AI Logic
     sub = "None needed."
-    if risk_score >= 1:
-        # Try local dictionary first
+    if final_risk_score >= 1:
+        # Check hardcoded list first
         sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
         
-        # If no local sub, ask Gemini for a high-quality culinary replacement
-        if not sub:
-            sub_prompt = f"Provide a common gluten-free substitution for '{ingredient_text}' in a recipe."
-            sub_response = gemini_model.generate_content(sub_prompt)
-            sub = sub_response.text
+        # If no hardcoded sub and risk is medium/high (2-3), use Search + AI
+        if not sub and final_risk_score >= 2:
+            try:
+                snippets = check_gluten_via_google(ingredient_text)
+                context = "\n".join(snippets)
+                
+                prompt = f"Is {ingredient_text} gluten-free? Context: {context}. Provide a 1-sentence substitute if needed."
+                response = gemini_model.generate_content(prompt)
+                sub = response.text
+            except Exception as e:
+                sub = f"Search/AI Error: {str(e)}. Please verify manually."
+        elif not sub:
+            sub = "Check label for gluten-free certification."
 
     return {
         "ingredient": ingredient_text, 
-        "risk_score": risk_score,
+        "risk_score": final_risk_score,
         "rec_action": rec_action,
         "why_flagged": why_flagged,
         "substitution": sub
