@@ -257,7 +257,7 @@ def evaluate_ingredient(ingredient_text, lookup_df):
 
 # --- STREAMLIT UI ---
 st.set_page_config(page_title="SMRE Gluten Audit", layout="wide")
-st.title("🛡️ Smart Meal Recommendation Engine (SMRE) Gluten Pipeline")
+st.title("Smart Meal Recommendation Engine (SMRE) Gluten Pipeline")
 
 # --- One-sentence description below the title ---
 st.markdown("An automated auditing system designed to identify gluten-containing ingredients and suggest safe, high-quality alternatives for celiac-safe meal planning.")
