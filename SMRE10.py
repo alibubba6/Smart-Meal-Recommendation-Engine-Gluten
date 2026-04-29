@@ -256,7 +256,7 @@ if st.sidebar.button("Random Recipe"):
     
     # ... rest of your existing display logic ...
     ingredients = parse_maybe_list(recipe.get("ingredients", []))
-    results = [evaluate_ingredient(ing) for ing in ingredients]
+    results = [evaluate_ingredient(ing, lookup_df) for ing in ingredients]
     
     col1, col2 = st.columns(2)
     
