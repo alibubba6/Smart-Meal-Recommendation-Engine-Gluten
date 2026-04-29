@@ -9,22 +9,24 @@ import streamlit as st
 import requests
 from googleapiclient.discovery import build
 
-
-# --- CONFIGURATION & FILE DOWNLOADING ---
-FILE_IDS = {
-    "recipes": "1TKskq-8PN-n1Xq7Q1rjmcPouBlpl788g",
-    "lookup": "1Vkdzo4VeHQCNzMPo9bhPey2FgdkYocsF",
-}
-
 @st.cache_data
-def download_datasets():
-    """Downloads files from Google Drive if they don't exist locally."""
-    for name, file_id in FILE_IDS.items():
-        output = f"{name}.csv"
-        if not os.path.exists(output):
-            url = f'https://drive.google.com/uc?id={file_id}'
-            gdown.download(url, output, quiet=False)
-    return True
+def load_data():
+    """Loads datasets directly from the repository."""
+    # Use the filenames as they appear in your GitHub repo
+    recipes_path = "recipes.csv"
+    lookup_path = "gluten_lookup_table_scored.csv"
+    
+    # Check if files exist to avoid errors during local testing
+    if os.path.exists(recipes_path) and os.path.exists(lookup_path):
+        recipes_df = pd.read_csv(recipes_path)
+        lookup_df = pd.read_csv(lookup_path)
+        return recipes_df, lookup_df
+    else:
+        st.error("Data files not found. Please ensure recipes.csv and gluten_lookup_table_scored.csv are in the repository.")
+        return pd.DataFrame(), pd.DataFrame()
+
+# --- INITIALIZE APP ---
+recipes_df, lookup_df = load_data()
 
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
@@ -148,13 +150,31 @@ def load_data():
     return recipes_df, lookup_df
 
 SUBSTITUTIONS = {
-    "flour": "gluten-free all-purpose flour",
-    "soy sauce": "tamari or liquid aminos",
-    "bread crumbs": "gluten-free bread crumbs",
-    "pasta": "gluten-free pasta (corn or rice based)",
-    "barley": "quinoa or rice",
-    "rye": "buckwheat",
-    "bread": "gluten-free bread"
+    "soy sauce": "Use certified gluten-free tamari.",
+    "teriyaki sauce": "Use a certified gluten-free teriyaki sauce or coconut aminos.",
+    "malt vinegar": "Use apple cider vinegar or rice vinegar if appropriate.",
+    "malt": "Replace with a certified gluten-free flavoring or omit if possible.",
+    "malt extract": "Use a certified gluten-free flavoring or omit if possible.",
+    "malt syrup": "Use molasses, honey, or a certified gluten-free syrup if appropriate.",
+    "brewer's yeast": "Use certified gluten-free nutritional yeast if appropriate.",
+    "modified food starch": "Use cornstarch, arrowroot, or tapioca starch if the recipe allows.",
+    "bouillon": "Use a certified gluten-free broth or stock.",
+    "miso": "Use a certified gluten-free miso or chickpea miso.",
+    "wheat flour": "Use a certified 1:1 gluten-free flour blend.",
+    "all-purpose flour": "Use a certified 1:1 gluten-free flour blend.",
+    "bread flour": "Use a gluten-free bread flour blend if baking.",
+    "graham flour": "Use a gluten-free flour blend and adjust sweetness if needed.",
+    "semolina": "Use certified gluten-free pasta or rice-based pasta.",
+    "durum": "Use certified gluten-free pasta or rice-based pasta.",
+    "spelt": "Use a certified gluten-free flour blend or gluten-free grain alternative.",
+    "farro": "Use rice, quinoa, or certified gluten-free sorghum.",
+    "kamut": "Use quinoa, brown rice, or a certified gluten-free grain.",
+    "couscous": "Use quinoa or gluten-free couscous alternative.",
+    "panko": "Use gluten-free panko or crushed gluten-free crackers.",
+    "breadcrumbs": "Use gluten-free breadcrumbs.",
+    "flour tortilla": "Use a certified gluten-free tortilla or corn tortilla.",
+    "seitan": "Use tofu, tempeh, mushrooms, or chicken depending on recipe context.",
+    "roux": "Use butter and gluten-free flour, or a cornstarch slurry depending on the recipe."
 }
 
 def normalize_text(text: str) -> str:
