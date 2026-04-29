@@ -7,7 +7,7 @@ from pathlib import Path
 import streamlit as st
 import requests
 from googleapiclient.discovery import build
-from google import genai
+import google.generativeai as genai
 
 
 # --- API CONFIGURATION ---
@@ -16,7 +16,21 @@ USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
-client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+def load_gemini():
+    # We try Flash first, but have a backup so the app doesn't crash
+    available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+    
+    if 'models/gemini-1.5-flash' in available_models:
+        return genai.GenerativeModel('gemini-1.5-flash')
+    elif 'models/gemini-pro' in available_models:
+        return genai.GenerativeModel('gemini-pro')
+    else:
+        # If all else fails, pick the first one that supports content generation
+        return genai.GenerativeModel(available_models[0].replace('models/', ''))
+
+gemini_model = load_gemini()
 
 def check_usda_gluten(ingredient_name):
     """
