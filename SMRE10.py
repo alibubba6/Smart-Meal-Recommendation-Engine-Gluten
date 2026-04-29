@@ -293,21 +293,7 @@ if st.sidebar.button("Random Recipe"):
     
     with col1:
         st.subheader("📋 Ingredients Audit")
-        for r in results:
-            score = r['risk_score']
 
-            max_risk = max([r['risk_score'] for r in results]) if results else 0
-        
-            if max_risk >= 2:
-                st.error(f"**Action Required:** High-risk ingredients detected.")
-            elif max_risk == 1:
-                st.warning(f"**Caution:** Potential gluten cross-contamination or hidden sources.")
-            else:
-                st.success(f"**Safe:** No gluten-containing ingredients identified.")
-        
-        st.divider()
-
-        # --- PART 2: UPDATE THE LOOP ---
         risk_icons = {3: "🔴", 2: "🟠", 1: "🟡", 0: "🟢"}
         
         for r in results:
