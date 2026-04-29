@@ -17,7 +17,7 @@ GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-gemini_model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
+gemini_model = genai.GenerativeModel(model_name='gemini-1.5-flash')
 
 def get_google_substitution(ingredient_name):
     """
