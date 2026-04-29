@@ -1,0 +1,6 @@
+streamlit
+pandas
+gdown
+spacy
+google-api-python-client
+requests
