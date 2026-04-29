@@ -4,7 +4,6 @@ import gdown
 import os
 import re
 import ast
-import spacy
 from pathlib import Path
 import streamlit as st
 import requests
@@ -130,10 +129,6 @@ def evaluate_ingredient(ingredient_text):
 
 
 # --- LOAD DATA ---
-@st.cache_resource  # Use cache_resource for objects like NLP models
-def load_nlp():
-    """Loads the spaCy model pre-installed via requirements.txt"""
-    return spacy.load("en_core_web_sm")
 
 @st.cache_data
 def load_data():
