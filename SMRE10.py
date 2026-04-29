@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 import google.generativeai as genai
 
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-gemini_model = genai.GenerativeModel('models/gemini-1.5-flash')
+gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
 
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
