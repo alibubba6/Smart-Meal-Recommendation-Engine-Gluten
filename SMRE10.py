@@ -169,6 +169,7 @@ SUBSTITUTIONS = {
     "wheat flour": "Use a certified 1:1 gluten-free flour blend.",
     "all-purpose flour": "Use a certified 1:1 gluten-free flour blend.",
     "bread flour": "Use a gluten-free bread flour blend if baking.",
+    "flour": "Use gluten-free flour blend.",
     "graham flour": "Use a gluten-free flour blend and adjust sweetness if needed.",
     "semolina": "Use certified gluten-free pasta or rice-based pasta.",
     "durum": "Use certified gluten-free pasta or rice-based pasta.",
