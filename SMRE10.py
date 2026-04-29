@@ -15,7 +15,7 @@ gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
-GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
