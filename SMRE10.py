@@ -16,21 +16,30 @@ gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
 def check_gluten_via_google(ingredient_name):
     """Searches the web to see if a specific ingredient contains gluten."""
-    api_key = st.secrets["GOOGLE_API_KEY"]
+    # 1. Clean the ingredient name (removes '2 pounds', 'fresh', etc.)
+    # This prevents the 401/400 errors caused by overly long search strings
+    clean_name = re.sub(r'^\d+[\/\d\.]*\s*(pounds|lbs|oz|g|kg|cups|tbsp|tsp)?\s*', '', ingredient_name, flags=re.IGNORECASE)
+    clean_name = clean_name.split(',')[0].strip() # Take only the part before a comma
+    
+    api_key = st.secrets["GOOGLE_SEARCH_API_KEY"]
     cse_id = st.secrets["GOOGLE_CSE_ID"]
     
+    # 2. Explicitly pass the developerKey to the build function
     service = build("customsearch", "v1", developerKey=api_key)
-    query = f"is {ingredient_name} gluten free celiac safe"
+    query = f"is {clean_name} gluten free celiac safe"
     
-    # Execute search
-    res = service.cse().list(q=query, cx=cse_id, num=3).execute()
-    
-    # Return the snippets from the top 3 results
-    return [item['snippet'] for item in res.get('items', [])]
+    try:
+        # Execute search
+        res = service.cse().list(q=query, cx=cse_id, num=3).execute()
+        return [item['snippet'] for item in res.get('items', [])]
+    except Exception as e:
+        st.error(f"Search Error for {clean_name}: {e}")
+        return ["No search results found due to authentication or quota issues."]
 
 def check_usda_gluten(ingredient_name):
     """
