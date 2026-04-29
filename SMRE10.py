@@ -92,6 +92,38 @@ def check_usda_gluten(ingredient_name):
     except Exception as e:
         return None, f"USDA API Error: {e}"
 
+def check_gluten_via_google(ingredient_name):
+    """
+    Uses Google Custom Search API to get raw data about an ingredient's gluten status.
+    This data is then passed to Gemini for analysis.
+    """
+    if not GOOGLE_SEARCH_API_KEY or not GOOGLE_CSE_ID:
+        return ["API Configuration missing (Keys or CSE ID)."]
+
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        "key": GOOGLE_SEARCH_API_KEY,
+        "cx": GOOGLE_CSE_ID,
+        "q": f"is {ingredient_name} gluten free celiac safe",
+        "num": 3
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        res = response.json()
+        
+        # Check for the 403 Permission Denied error or other API issues
+        if "error" in res:
+            return [f"Google API Error: {res['error']['message']}"]
+            
+        # Extract snippets from search results
+        if "items" in res:
+            return [item['snippet'] for item in res['items']]
+            
+        return ["No specific search results found."]
+    except Exception as e:
+        return [f"Search failed: {str(e)}"]
+
 def get_google_substitution(ingredient_name):
     """Uses Google Custom Search API to find gluten-free alternatives."""
     search_query = f"gluten free substitute for {ingredient_name}"
