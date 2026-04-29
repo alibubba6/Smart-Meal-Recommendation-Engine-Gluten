@@ -131,11 +131,7 @@ def evaluate_ingredient(ingredient_text):
 # --- LOAD DATA ---
 @st.cache_resource
 def load_nlp():
-    try:
-        return spacy.load("en_core_web_sm")
-    except OSError:
-        os.system("python -m spacy download en_core_web_sm")
-        return spacy.load("en_core_web_sm")
+    return spacy.load("en_core_web_sm")
 
 @st.cache_data
 def load_data():
