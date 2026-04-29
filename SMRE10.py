@@ -10,7 +10,7 @@ from googleapiclient.discovery import build
 import google.generativeai as genai
 
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
+gemini_model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
 
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
@@ -84,13 +84,13 @@ def check_usda_gluten(ingredient_name):
         return None, f"USDA API Error: {e}"
 
 def get_google_substitution(ingredient_name):
-    """
-    Uses Google Custom Search API to find gluten-free alternatives.
-    """
+    """Uses Google Custom Search API to find gluten-free alternatives."""
     search_query = f"gluten free substitute for {ingredient_name}"
     url = "https://www.googleapis.com/customsearch/v1"
+    
+    # Correctly reference the new variable name from your secrets
     params = {
-        "key": GOOGLE_API_KEY,
+        "key": st.secrets["GOOGLE_SEARCH_API_KEY"], 
         "cx": GOOGLE_CSE_ID,
         "q": search_query,
         "num": 1
@@ -100,11 +100,11 @@ def get_google_substitution(ingredient_name):
         response = requests.get(url, params=params)
         results = response.json()
         if "items" in results:
-            # Return the snippet from the first search result
             return results["items"][0]["snippet"]
         return "No substitution found via Google."
     except Exception as e:
         return f"Google API Error: {e}"
+    
 
 # --- UPDATED EVALUATION LOGIC ---
 def evaluate_ingredient(ingredient_text):
