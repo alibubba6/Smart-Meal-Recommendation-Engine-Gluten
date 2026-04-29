@@ -9,15 +9,15 @@ import requests
 from googleapiclient.discovery import build
 import google.generativeai as genai
 
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-gemini_model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
 
 # --- API CONFIGURATION ---
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
+
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+gemini_model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
 
 def check_gluten_via_google(ingredient_name):
     """Searches the web to see if a specific ingredient contains gluten."""
