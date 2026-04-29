@@ -214,7 +214,6 @@ def evaluate_ingredient(ingredient_text):
 st.set_page_config(page_title="SMRE Gluten Audit", layout="wide")
 st.title("🛡️ Smart Meal Recommendation Engine (SMRE) Gluten Pipeline")
 
-nlp = load_nlp()
 recipes_df, lookup_df = load_data()
 
 st.sidebar.header("Controls")
