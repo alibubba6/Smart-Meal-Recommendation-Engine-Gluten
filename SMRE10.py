@@ -1,0 +1,253 @@
+import streamlit as st
+import pandas as pd
+import gdown
+import os
+import re
+import ast
+import spacy
+from pathlib import Path
+import streamlit as st
+import requests
+from googleapiclient.discovery import build
+
+# --- CONFIGURATION & FILE DOWNLOADING ---
+FILE_IDS = {
+    "recipes": "1A-MEdiyaiUG1VqWeACdSD5nTXFJECzBq",
+    "lookup": "1Vkdzo4VeHQCNzMPo9bhPey2FgdkYocsF",
+}
+
+@st.cache_data
+def download_datasets():
+    """Downloads files from Google Drive if they don't exist locally."""
+    for name, file_id in FILE_IDS.items():
+        output = f"{name}.csv"
+        if not os.path.exists(output):
+            url = f'https://drive.google.com/uc?id={file_id}'
+            gdown.download(url, output, quiet=False)
+    return True
+
+# --- API CONFIGURATION ---
+# Access keys from your .streamlit/secrets.toml
+USDA_API_KEY = st.secrets["USDA_API_KEY"]
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+# Note: Google Search API also needs a Search Engine ID (CX)
+GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
+
+def check_gluten_via_google(ingredient_name):
+    """Searches the web to see if a specific ingredient contains gluten."""
+    api_key = st.secrets["GOOGLE_API_KEY"]
+    cse_id = st.secrets["GOOGLE_CSE_ID"]
+    
+    service = build("customsearch", "v1", developerKey=api_key)
+    query = f"is {ingredient_name} gluten free celiac safe"
+    
+    # Execute search
+    res = service.cse().list(q=query, cx=cse_id, num=3).execute()
+    
+    # Return the snippets from the top 3 results
+    return [item['snippet'] for item in res.get('items', [])]
+
+def check_usda_gluten(ingredient_name):
+    """
+    Queries USDA FoodData Central to check for gluten-containing keywords 
+    in the ingredient description or ingredients list.
+    """
+    url = f"https://api.nal.usda.gov/fdc/v1/foods/search?api_key={USDA_API_KEY}"
+    payload = {"query": ingredient_name, "pageSize": 1}
+    
+    try:
+        response = requests.post(url, json=payload)
+        data = response.json()
+        
+        if data.get("foods"):
+            food_item = data["foods"][0]
+            description = food_item.get("description", "").lower()
+            ingredients_list = food_item.get("ingredients", "").lower()
+            
+            # Search for gluten red flags
+            red_flags = ["wheat", "barley", "rye", "malt", "brewer's yeast"]
+            for flag in red_flags:
+                if flag in description or flag in ingredients_list:
+                    return True, f"Detected {flag} in USDA data."
+                    
+        return False, "No obvious gluten detected via USDA."
+    except Exception as e:
+        return None, f"USDA API Error: {e}"
+
+def get_google_substitution(ingredient_name):
+    """
+    Uses Google Custom Search API to find gluten-free alternatives.
+    """
+    search_query = f"gluten free substitute for {ingredient_name}"
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        "key": GOOGLE_API_KEY,
+        "cx": GOOGLE_CSE_ID,
+        "q": search_query,
+        "num": 1
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        results = response.json()
+        if "items" in results:
+            # Return the snippet from the first search result
+            return results["items"][0]["snippet"]
+        return "No substitution found via Google."
+    except Exception as e:
+        return f"Google API Error: {e}"
+
+# --- UPDATED EVALUATION LOGIC ---
+def evaluate_ingredient(ingredient_text):
+    # 1. Keep your existing local lookup logic as a first pass
+    matches = lookup_matches(ingredient_text)
+    
+    # 2. Call USDA API for a deeper check
+    usda_found, usda_msg = check_usda_gluten(ingredient_text)
+    
+    # Determine risk
+    risk_score = 0
+    if matches:
+        risk_score = max(int(m.get("risk_score", 0)) for m in matches)
+    if usda_found:
+        risk_score = max(risk_score, 2) # Elevate risk if USDA confirms wheat/barley/rye
+        
+    # 3. If high risk, use Google to find a modern substitution
+    sub = "None needed."
+    if risk_score >= 1:
+        # Check hardcoded SUBSTITUTIONS first, then fallback to Google
+        sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
+        if not sub:
+            sub = get_google_substitution(ingredient_text)
+            
+    return {
+        "ingredient": ingredient_text, 
+        "risk_score": risk_score,
+        "substitution": sub,
+        "usda_note": usda_msg
+    }
+
+
+# --- LOAD DATA ---
+@st.cache_resource
+def load_nlp():
+    try:
+        return spacy.load("en_core_web_sm")
+    except OSError:
+        os.system("python -m spacy download en_core_web_sm")
+        return spacy.load("en_core_web_sm")
+
+@st.cache_data
+def load_data():
+    download_datasets()
+    recipes_df = pd.read_csv("recipes.csv")
+    lookup_df = pd.read_csv("lookup.csv")
+    
+    
+    # Prep lookup structures
+    lookup_df["alias_norm"] = lookup_df["alias"].astype(str).str.lower().str.strip()
+    lookup_df = lookup_df.sort_values(
+        by="alias_norm", 
+        key=lambda s: s.str.len(), 
+        ascending=False
+    ).reset_index(drop=True)
+    
+    return recipes_df, lookup_df
+
+SUBSTITUTIONS = {
+    "flour": "gluten-free all-purpose flour",
+    "soy sauce": "tamari or liquid aminos",
+    "bread crumbs": "gluten-free bread crumbs",
+    "pasta": "gluten-free pasta (corn or rice based)",
+    "barley": "quinoa or rice",
+    "rye": "buckwheat"
+}
+
+def normalize_text(text: str) -> str:
+    text = str(text).lower()
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = re.sub(r"[^a-z0-9\s\-]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+def clean_ingredient(ingredient: str) -> str:
+    text = normalize_text(ingredient)
+    # Remove measurements and units
+    text = re.sub(r"^\d+[\/\d\.]*\s*", "", text)
+    text = re.sub(r"\b(cup|cups|tbsp|tablespoon|tsp|teaspoon|oz|lb|gram|g|kg|ml|l|pinch|clove|slice|slices)\b", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+def parse_maybe_list(value):
+    if isinstance(value, list): return value
+    try:
+        parsed = ast.literal_eval(str(value))
+        if isinstance(parsed, list): return parsed
+    except:
+        pass
+    return [x.strip() for x in str(value).split(",") if x.strip()]
+
+def lookup_matches(ingredient_text: str):
+    norm = clean_ingredient(ingredient_text)
+    matches = []
+    # Using the lookup_df loaded by load_data()
+    for _, row in lookup_df.iterrows():
+        if str(row["alias_norm"]) in norm:
+            matches.append(row.to_dict())
+    return matches
+
+def evaluate_ingredient(ingredient_text):
+    matches = lookup_matches(ingredient_text)
+    
+    # Logic to determine risk and substitution
+    if matches:
+        max_risk = max(int(m.get("risk_score", 0)) for m in matches)
+        # Find a substitution if it's high risk
+        sub = "No specific substitution found."
+        for key in SUBSTITUTIONS:
+            if key in ingredient_text.lower():
+                sub = SUBSTITUTIONS[key]
+                break
+        
+        return {
+            "ingredient": ingredient_text, 
+            "risk_score": max_risk,
+            "substitution": sub
+        }
+    
+    return {"ingredient": ingredient_text, "risk_score": 0, "substitution": "None needed."}
+
+# --- STREAMLIT UI ---
+st.set_page_config(page_title="SMRE Gluten Audit", layout="wide")
+st.title("🛡️ Smart Meal Recommendation Engine (SMRE) Gluten Pipeline")
+
+nlp = load_nlp()
+recipes_df, lookup_df = load_data()
+
+st.sidebar.header("Controls")
+if st.sidebar.button("Random Recipe"):
+    recipe = recipes_df.sample(1).iloc[0]
+    
+    st.header(f"Recipe: {recipe.get('title', 'Untitled')}")
+    
+    ingredients = parse_maybe_list(recipe.get("ingredients", []))
+    results = [evaluate_ingredient(ing) for ing in ingredients] # Your decision engine
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("📋 Ingredients")
+        for r in results:
+            with st.expander(f"{r['ingredient']} (Risk: {r['risk_score']})"):
+                if r['risk_score'] >= 2:
+                    st.error(f"High Risk: {r['substitution']}")
+                elif r['risk_score'] == 1:
+                    st.warning("Possible Risk: Verify ingredients.")
+                else:
+                    st.success("Likely Safe")
+                    
+    with col2:
+        st.subheader("📖 Directions")
+        directions = parse_maybe_list(recipe.get("directions", []))
+        for i, step in enumerate(directions, 1):
+            st.write(f"**{i}.** {step}")
