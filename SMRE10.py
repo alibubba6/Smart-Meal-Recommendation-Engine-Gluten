@@ -19,27 +19,36 @@ GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "")
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 gemini_model = genai.GenerativeModel(model_name='models/gemini-1.5-flash')
 
-def check_gluten_via_google(ingredient_name):
-    """Searches the web to see if a specific ingredient contains gluten."""
-    # 1. Clean the ingredient name (removes '2 pounds', 'fresh', etc.)
-    # This prevents the 401/400 errors caused by overly long search strings
-    clean_name = re.sub(r'^\d+[\/\d\.]*\s*(pounds|lbs|oz|g|kg|cups|tbsp|tsp)?\s*', '', ingredient_name, flags=re.IGNORECASE)
-    clean_name = clean_name.split(',')[0].strip() # Take only the part before a comma
-    
-    api_key = st.secrets["GOOGLE_SEARCH_API_KEY"]
-    cse_id = st.secrets["GOOGLE_CSE_ID"]
-    
-    # 2. Explicitly pass the developerKey to the build function
-    service = build("customsearch", "v1", developerKey=api_key)
-    query = f"is {clean_name} gluten free celiac safe"
+def get_google_substitution(ingredient_name):
+    """
+    Uses Google Custom Search API with a safety fallback if the API is disabled.
+    """
+    if not GOOGLE_SEARCH_API_KEY or not GOOGLE_CSE_ID:
+        return "Manual verification required (API keys missing)."
+
+    search_query = f"gluten free substitute for {ingredient_name}"
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        "key": GOOGLE_SEARCH_API_KEY,
+        "cx": GOOGLE_CSE_ID,
+        "q": search_query,
+        "num": 1
+    }
     
     try:
-        # Execute search
-        res = service.cse().list(q=query, cx=cse_id, num=3).execute()
-        return [item['snippet'] for item in res.get('items', [])]
+        response = requests.get(url, params=params)
+        results = response.json()
+        
+        # Check if the API returned an error (like the 403 you saw)
+        if "error" in results:
+            return f"Search API Error: {results['error']['message']}. Please check label."
+            
+        if "items" in results:
+            return results["items"][0]["snippet"]
+            
+        return "No substitution found via Google."
     except Exception as e:
-        st.error(f"Search Error for {clean_name}: {e}")
-        return ["No search results found due to authentication or quota issues."]
+        return f"Connection Error: {e}. Please verify status manually."
 
 def check_usda_gluten(ingredient_name):
     """
