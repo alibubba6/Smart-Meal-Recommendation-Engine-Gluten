@@ -2,4 +2,5 @@ streamlit
 pandas
 google-api-python-client
 requests
-google-generativeai>=0.7.0
+from google import genai
+from google.genai import types
