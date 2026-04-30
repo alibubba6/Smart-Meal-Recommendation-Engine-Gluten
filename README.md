@@ -23,7 +23,7 @@ The SMRE Gluten Pipeline solves the challenge of identifying "hidden" gluten in 
 The engine utilizes a four-stage evaluation process for ingredient safety:
 
 1. **Deterministic Lookup:** Scans `gluten_lookup_table_scored.csv` for known gluten aliases using optimized string matching.
-2. **USDA API Deep Dive:** If the local check is inconclusive, the system queries the USDA database to inspect descriptions and ingredient lists for specific red-flag keywords like "maltodextrin," "brewer's yeast," or "triticale"[cite: 2].
+2. **USDA API Deep Dive:** If the local check is inconclusive, the system queries the USDA database to inspect descriptions and ingredient lists for specific red-flag keywords like "maltodextrin," "brewer's yeast," or "triticale".
 3. **Web-Informed Research:** If a risk is suspected, the system fetches real-time data from the Google Search API to identify modern manufacturing risks.
 4. **Generative AI Analysis:** The **Gemini 3 Flash** model analyzes the gathered context to provide a final safety verdict and a human-like substitution recommendation.
 
