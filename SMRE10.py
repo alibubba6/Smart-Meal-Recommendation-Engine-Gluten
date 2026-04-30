@@ -18,10 +18,12 @@ GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "")
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 
 @st.cache_resource
-def get_gemini():
-    return genai.GenerativeModel("models/gemini-1.5-flash")
+def get_gemini_client():
+    # Use the key from your st.secrets
+    return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
-client = get_gemini()
+# Initialize the new client
+client = get_gemini_client()
 
 def check_usda_gluten(ingredient_name):
     """
@@ -222,30 +224,27 @@ def evaluate_ingredient(ingredient_text, lookup_df):
         sub = next((SUBSTITUTIONS[k] for k in SUBSTITUTIONS if k in ingredient_text.lower()), None)
         
         # Step B: If no hardcoded sub OR if we need deeper analysis (Researching unknowns)
-        if not sub or csv_score == 0: 
+        if not sub:
             try:
-                # Trigger Google Search as the 'Researcher'
                 snippets = check_gluten_via_google(ingredient_text)
                 context = "\n".join(snippets)
-                
-                # Trigger Gemini as the 'Expert Analyst'
-                prompt = f"""
-                Analyze the gluten risk for '{ingredient_text}'. 
-                Search Data: {context}
-                
-                1. Provide a definitive safety verdict.
-                2. If risky, provide a 1-sentence cooking substitute.
-                """
-                response = client.generate_content(prompt)
+            
+            # Updated call for Gemini 3 Flash
+                response = client.models.generate_content(
+                    model="gemini-3-flash-preview",
+                    contents=f"Analyze gluten risk for '{ingredient_text}'. Context: {context}. Provide safety verdict and 1-sentence sub."
+                )
+            
+            # Use .text to get the string response
                 sub = response.text
-                
-                # If Gemini finds a risk your CSV/USDA missed, update the score
-                if "risk" in sub.lower() or "contain" in sub.lower():
+            
+            # Logic to update risk score based on AI findings
+                if any(word in sub.lower() for word in ["risk", "unsafe", "contain"]):
                     final_risk_score = max(final_risk_score, 2)
-                    why_flagged = "Flagged by AI Web Analysis"
-                    
+                    why_flagged = "Flagged by Gemini 3 Web Analysis"
+                
             except Exception as e:
-                sub = f"Safety could not be verified by AI. Please choose a certified gluten-free alternative."
+                sub = f"Substitution error: {str(e)}"
         
     return {
         "ingredient": ingredient_text, 
