@@ -2,5 +2,4 @@ streamlit
 pandas
 google-api-python-client
 requests
-from google import genai
-from google.genai import types
+google-genai
