@@ -7,7 +7,8 @@ from pathlib import Path
 import streamlit as st
 import requests
 from googleapiclient.discovery import build
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 
 # --- API CONFIGURATION ---
