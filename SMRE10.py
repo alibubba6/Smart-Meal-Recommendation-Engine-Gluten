@@ -30,7 +30,7 @@ def load_gemini():
         # If all else fails, pick the first one that supports content generation
         return genai.GenerativeModel(available_models[0].replace('models/', ''))
 
-gemini_model = load_gemini()
+client = load_gemini()
 
 def check_usda_gluten(ingredient_name):
     """
