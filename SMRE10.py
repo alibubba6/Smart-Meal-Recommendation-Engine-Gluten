@@ -14,7 +14,8 @@ import google.generativeai as genai
 # Access keys from your .streamlit/secrets.toml
 USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
-GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
+GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "")
+GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 
 @st.cache_resource
 def get_gemini():
