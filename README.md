@@ -1,47 +1,49 @@
 # Smart Meal Recommendation Engine (SMRE): Gluten Pipeline
 
-An AI-powered hybrid meal recommendation engine designed to provide safe, personalized, and gluten-aware recipes. This system combines **deterministic rule-based auditing** with **dynamic API verification** to ensure celiac-safe meal planning.
+An AI-powered hybrid meal recommendation engine designed to provide safe, personalized, and gluten-aware recipes. This system combines **deterministic rule-based auditing** with **dynamic API verification** and **generative AI analysis** to ensure celiac-safe meal planning.
 
 ## Live Application
 Access the deployed engine here:
 **[Smart Meal Recommendation Engine (SMRE) - Gluten Pipeline](https://smart-meal-recommendation-engine-gluten.streamlit.app/)**
 
 ## Overview
-The SMRE Gluten Pipeline solves the challenge of identifying "hidden" gluten in complex recipes. By cross-referencing local datasets with the **USDA FoodData Central API** and **Google Custom Search API**, the engine provides a multi-layered risk assessment for every ingredient.
+The SMRE Gluten Pipeline solves the challenge of identifying "hidden" gluten in complex recipes. By cross-referencing local datasets with the **USDA FoodData Central API**, **Google Custom Search API**, and the **Gemini 3 Flash** model, the engine provides a multi-layered risk assessment for every ingredient.
 
 ## Tech Stack
-* **Frontend:** Streamlit
-* **Language:** Python 3.x
-* **Data Science:** Pandas, NumPy, Regex
+* **Frontend:** Streamlit.
+* **Language:** Python 3.x.
+* **Data Science:** Pandas, NumPy, Regex, AST.
 * **APIs:**
-    * **USDA FoodData Central:** For granular ingredient component analysis.
-    * **Google Custom Search (JSON API):** For real-time web verification and modern substitution discovery.
-* **Deployment:** Streamlit Cloud / GitHub
+    * **USDA FoodData Central:** For granular ingredient component analysis and red-flag detection.
+    * **Google Custom Search (JSON API):** For real-time web verification snippets.
+    * **Google Gemini 3 Flash:** For advanced reasoning, safety verdicts, and intelligent substitution discovery.
+* **Deployment:** Streamlit Cloud / GitHub.
 
 ## System Architecture
-The engine utilizes a three-stage evaluation process for ingredient safety:
+The engine utilizes a four-stage evaluation process for ingredient safety:
 
-1.  **Deterministic Lookup:** Scans a local `lookup.csv` for known gluten aliases using optimized string matching.
-2.  **USDA API Deep Dive:** If the local check is inconclusive, the system queries the USDA database to inspect the "description" and "ingredients list" for red-flag keywords (wheat, barley, rye, malt, etc.).
-3.  **Dynamic Substitution Engine:** If an ingredient is flagged as high-risk, the engine searches the web via Google API to find contemporary, celiac-safe alternatives (e.g., swapping soy sauce for tamari).
+1. **Deterministic Lookup:** Scans `gluten_lookup_table_scored.csv` for known gluten aliases using optimized string matching.
+2. **USDA API Deep Dive:** If the local check is inconclusive, the system queries the USDA database to inspect descriptions and ingredient lists for specific red-flag keywords like "maltodextrin," "brewer's yeast," or "triticale"[cite: 2].
+3. **Web-Informed Research:** If a risk is suspected, the system fetches real-time data from the Google Search API to identify modern manufacturing risks.
+4. **Generative AI Analysis:** The **Gemini 3 Flash** model analyzes the gathered context to provide a final safety verdict and a human-like substitution recommendation.
 
 ## Features
-* **Risk Scoring:** Categorizes ingredients into "Likely Safe" (0), "Possible Risk" (1), and "High Risk" (2).
-* **Automated Substitution:** Provides immediate alternatives for high-risk items.
-* **Smart Parsing:** Uses Regex and Abstract Syntax Trees (AST) to clean and normalize messy recipe data (removing units like "cups," "tbsp," or "finely chopped").
-* **Cloud Data Integration:** Automatically downloads and caches large recipe datasets from Google Drive via `gdown`.
+* **Enhanced Risk Scoring:** Categorizes ingredients into a 4-tier scale: Likely Safe (0), Possible Risk (1), Risk (2), and High Risk (3).
+* **Intelligent Substitution:** Uses a hybrid of hardcoded mappings and AI-generated suggestions (e.g., swapping soy sauce for certified gluten-free tamari).
+* **Smart Parsing:** Employs Regex and Abstract Syntax Trees (AST) to normalize recipe data by removing measurements (e.g., "cups," "tbsp") and preparation notes.
+* **Visual Audit Trail:** Provides a UI with status icons (🟢 to 🔴) and expandable details for every audited ingredient.
 
 ## Repository Structure
-* `SMRE10.py`: The core Streamlit application and logic.
-* `requirements.txt`: List of necessary Python libraries.
-* `lookup.csv`: Local database of gluten-containing aliases and risk scores.
+* `SMRE10.py`: The core Streamlit application and multi-stage logic.
+* `requirements.txt`: Includes `google-genai`, `google-api-python-client`, `requests`, and `pandas`.
+* `gluten_lookup_table_scored.csv`: Local database of gluten aliases and associated risk scores.
 * `recipes.csv`: Database of diverse meal options.
 
 ## Setup & Installation
-1.  **Clone the Repository:**
-    ```bash
-    git clone [https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git](https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git)
-    ```
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git](https://github.com/alibubba6/Smart-Meal-Recommendation-Engine-Gluten.git)
+
 2.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
