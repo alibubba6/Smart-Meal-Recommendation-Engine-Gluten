@@ -16,21 +16,11 @@ USDA_API_KEY = st.secrets["USDA_API_KEY"]
 GOOGLE_SEARCH_API_KEY = st.secrets["GOOGLE_SEARCH_API_KEY"]
 GOOGLE_CSE_ID = st.secrets.get("GOOGLE_CSE_ID", "") 
 
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+@st.cache_resource
+def get_gemini():
+    return genai.GenerativeModel("models/gemini-1.5-flash")
 
-def load_gemini():
-    # We try Flash first, but have a backup so the app doesn't crash
-    available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-    
-    if 'models/gemini-1.5-flash' in available_models:
-        return genai.GenerativeModel('model/gemini-2.0-flash')
-    elif 'models/gemini-pro' in available_models:
-        return genai.GenerativeModel('gemini-1.5-flash')
-    else:
-        # If all else fails, pick the first one that supports content generation
-        return genai.GenerativeModel(available_models[0].replace('models/', ''))
-
-client = load_gemini()
+client = get_gemini()
 
 def check_usda_gluten(ingredient_name):
     """
@@ -245,10 +235,7 @@ def evaluate_ingredient(ingredient_text, lookup_df):
                 1. Provide a definitive safety verdict.
                 2. If risky, provide a 1-sentence cooking substitute.
                 """
-                response = client.models.generate_content(
-                    model= "gemini-2.0-flash", 
-                    contents=prompt
-                )
+                response = client.generate_content(prompt)
                 sub = response.text
                 
                 # If Gemini finds a risk your CSV/USDA missed, update the score
